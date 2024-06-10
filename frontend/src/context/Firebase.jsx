@@ -66,11 +66,12 @@ export const FirebaseProvider = (props) => {
     }
 
     const isLoggedIn = user ? true : false 
-    
+
     return (
         <FirebaseContext.Provider value={{signUpUserWithEamilAndPassword,loginInUserWithEamilAndPassword,signInWithGoogle,handleCreateNewListing,listAllBooks,isLoggedIn,
         }}>
             {props.children}
         </FirebaseContext.Provider>
+        
     );
 };
