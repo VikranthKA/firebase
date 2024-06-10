@@ -1,8 +1,17 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useFirebase } from '../context/Firebase'
 
-const Home = () => {
+const Home = async() => {
+  const firebase = useFirebase()
+  console.log(firebase)
+  const [books,setBooks] = useState("")
+  useEffect(()=>{
+  firebase.listAllBooks().then((docs)=>console.log(docs.docs[0].data))
+
+  },[])
   return (
-    <div>
+    <div> 
+      <h1>Listing Books</h1>
     </div>
   )
 }

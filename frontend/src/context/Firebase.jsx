@@ -61,8 +61,8 @@ export const FirebaseProvider = (props) => {
         })
     }
 
-    const listAllBooks = async()=>{
-        return await getDocs(collection(firestore,`books`))
+    const listAllBooks = ()=>{
+        return  getDocs(collection(firestore,`books`))
     }
 
     const isLoggedIn = user ? true : false 
@@ -72,6 +72,6 @@ export const FirebaseProvider = (props) => {
         }}>
             {props.children}
         </FirebaseContext.Provider>
-        
+
     );
 };
