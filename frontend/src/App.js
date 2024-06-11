@@ -7,6 +7,7 @@ import Login from './pages/Login'
 import NavBar from './components/NavBar'
 import List from './pages/List'
 import Details from './pages/Details'
+import ViewOrders from './pages/ViewOrders'
 
 const App = () => {
   return (
@@ -18,6 +19,8 @@ const App = () => {
         <Route path='/login' element={<Login/>} />
         <Route path='/book/list' element={<List/>} />
        <Route path='/book/view/:bookId' element={<Details/>} />
+       <Route path='/book/orders' element={<ViewOrders/>} />
+
 
       </Routes>
     </div>
