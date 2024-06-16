@@ -18,6 +18,9 @@ function NavBar() {
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link onClick={()=>navigate("/book/list")}>Add Listing</Nav.Link>
             <Nav.Link href="/book/orders">Orders</Nav.Link>
+            <Nav.Link href="/appoinment">Appointment</Nav.Link>
+
+
 
 
           </Nav>

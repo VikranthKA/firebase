@@ -8,6 +8,7 @@ import NavBar from './components/NavBar'
 import List from './pages/List'
 import Details from './pages/Details'
 import ViewOrders from './pages/ViewOrders'
+import AppointementLogin from './pages/AppointementLogin'
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         <Route path='/book/list' element={<List/>} />
        <Route path='/book/view/:bookId' element={<Details/>} />
        <Route path='/book/orders' element={<ViewOrders/>} />
+       <Route path='/appoinment' element={<AppointementLogin/>}/>
 
 
       </Routes>
