@@ -253,21 +253,19 @@ export const FirebaseProvider = (props) => {
     }
   };
 
-  const fetchMyOrders = async () => {
-    if (!user?.uid) {
-        unsubscribe()
+  const fetchMyBooks = async (userId) => {
 
-      console.error("User is not authenticated.");
-      return null;
-    }
 
     try {
-      const collectionRef = collection(firestore, "orders"); // Assuming orders are stored under a different collection
-      const q = query(collectionRef, where("userID", "==", user.uid));
-      const result = await getDocs(q);
-      result.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
-      });
+      const collectionRef = collection(firestore, "books"); // Assuming orders are stored under a different collection
+      const q = query(collectionRef, where("userID", "==", userId));
+      console.log(user)
+      const result = await getDocs(q)
+      return result
+      // console.log(result)
+      // result.forEach((doc) => {
+      //   console.log(doc.id, " => ", doc.data());
+      // });
     } catch (error) {
       console.error("Error fetching orders: ", error);
     }
@@ -277,7 +275,7 @@ export const FirebaseProvider = (props) => {
 
   return (
     <FirebaseContext.Provider value={{
-      fetchMyOrders,
+      fetchMyBooks,
       placeOrder,
       getBookById,
       signUpUserWithEmailAndPassword,

@@ -1,39 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { useFirebase } from '../context/Firebase';
+import Card from "../components/Card"
 
 const ViewOrders = () => {
-  const { fetchMyOrders, isLoggedIn } = useFirebase();
-  const [orders, setOrders] = useState([]);
+  const { fetchMyBooks, isLoggedIn,user } = useFirebase();
+  const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    const getOrders = async () => {
-      if (isLoggedIn) {
-        const ordersSnapshot = await fetchMyOrders();
-        console.log(ordersSnapshot,"orders")
-        // const ordersList = ordersSnapshot.docs.map(doc => ({
-        //   id: doc.id,
-        //   ...doc.data()
-        // }));
-        // setOrders(ordersList);
-      }
-    };
+    if(isLoggedIn){
 
-    getOrders();
-  }, [isLoggedIn, fetchMyOrders]);
+      const getOrders = async () => {
+        if (isLoggedIn) {
+          const allBooks = await fetchMyBooks(user.uid);
+          setBooks(allBooks.docs)
+          console.log(allBooks)
+  
+  
+        }
+      };
+      getOrders();
+    }
+    if(!isLoggedIn) <h1> Please Login In</h1>
+    
+
+  }, []);
 
   return (
     <div>
       <h1>Orders</h1>
-      {orders.length > 0 ? (
+      {books?.length > 0 ? (
         <ul>
-          {orders.map(order => (
-            <li key={order.id}>
-              <p>Order ID: {order.id}</p>
-              <p>Book ID: {order.bookId}</p>
-              <p>Quantity: {order.quantity}</p>
-              {/* Add other order details as needed */}
-            </li>
-          ))}
+          {/* {console.log(books)} */}
+           {books.map(book =><Card key={book.id} id={book.id} data={book.data()}/>)}
         </ul>
       ) : (
         <p>No orders found.</p>
